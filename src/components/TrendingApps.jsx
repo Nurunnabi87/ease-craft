@@ -13,7 +13,7 @@ const TrendingApps = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {trendingApps.map((app) => (
-          <Link to={`/apps/${app.id}`}>
+          <Link to={`/app/${app.id}`}>
             <div className="border rounded-lg p-4 hover:shadow-lg">
               <img
                 src={app.image}
