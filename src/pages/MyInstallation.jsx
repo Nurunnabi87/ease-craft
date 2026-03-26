@@ -8,37 +8,41 @@ const MyInstallation = () => {
 
   useEffect(() => {
     const storedApps = JSON.parse(localStorage.getItem("installedApps")) || [];
-
     setInstalledApps(storedApps);
   }, []);
 
   const handleSort = (value) => {
     setSortType(value);
 
-    let sortedApps = [...installedApps];
+    const sortedApps = [...installedApps];
 
-    if (value === "downloads-high") {
-      sortedApps.sort((a, b) => b.downloads - a.downloads);
-    }
+    switch (value) {
+      case "downloads-high":
+        sortedApps.sort((a, b) => b.downloads - a.downloads);
+        break;
 
-    if (value === "downloads-low") {
-      sortedApps.sort((a, b) => a.downloads - b.downloads);
-    }
+      case "downloads-low":
+        sortedApps.sort((a, b) => a.downloads - b.downloads);
+        break;
 
-    if (value === "rating-high") {
-      sortedApps.sort((a, b) => b.ratingAvg - a.ratingAvg);
-    }
+      case "rating-high":
+        sortedApps.sort((a, b) => b.ratingAvg - a.ratingAvg);
+        break;
 
-    if (value === "rating-low") {
-      sortedApps.sort((a, b) => a.ratingAvg - b.ratingAvg);
-    }
+      case "rating-low":
+        sortedApps.sort((a, b) => a.ratingAvg - b.ratingAvg);
+        break;
 
-    if (value === "size-high") {
-      sortedApps.sort((a, b) => b.size - a.size);
-    }
+      case "size-high":
+        sortedApps.sort((a, b) => b.size - a.size);
+        break;
 
-    if (value === "size-low") {
-      sortedApps.sort((a, b) => a.size - b.size);
+      case "size-low":
+        sortedApps.sort((a, b) => a.size - b.size);
+        break;
+
+      default:
+        break;
     }
 
     setInstalledApps(sortedApps);
@@ -50,72 +54,72 @@ const MyInstallation = () => {
     localStorage.setItem("installedApps", JSON.stringify(updatedApps));
 
     setInstalledApps(updatedApps);
-    toast.success("App Uninstalled Successfully");
+
+    toast.success("App Uninstalled Successfully ✅");
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-      <h1 className="text-4xl font-bold text-center mb-5">
+      {/* Title */}
+      <h1 className="text-4xl font-bold text-center mb-4">
         Your Installed Apps
       </h1>
+
       <p className="text-center text-sm text-gray-400 mb-10">
-        Explore All Trending Apps on the Market developed by us
+        Explore all installed applications crafted for smarter life
       </p>
-      <div className="flex justify-between items-center pb-4">
+
+      {/* Top Bar */}
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4 pb-8">
         <p className="text-lg font-semibold">
           {installedApps.length} Apps Found
         </p>
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-          <select
-            value={sortType}
-            onChange={(e) => handleSort(e.target.value)}
-            className="border px-4 py-2 rounded-xl shadow"
-          >
-            <option value="">Sort By</option>
 
-            <option value="downloads-high">Downloads High-Low</option>
-
-            <option value="downloads-low">Downloads Low-High</option>
-
-            <option value="rating-high">Rating High-Low</option>
-
-            <option value="rating-low">Rating Low-High</option>
-
-            <option value="size-high">Size High-Low</option>
-
-            <option value="size-low">Size Low-High</option>
-          </select>
-        </div>
+        <select
+          value={sortType}
+          onChange={(e) => handleSort(e.target.value)}
+          className="border px-4 py-2 rounded-xl shadow w-full md:w-auto"
+        >
+          <option value="">Sort By</option>
+          <option value="downloads-high">Downloads High-Low</option>
+          <option value="downloads-low">Downloads Low-High</option>
+          <option value="rating-high">Rating High-Low</option>
+          <option value="rating-low">Rating Low-High</option>
+          <option value="size-high">Size High-Low</option>
+          <option value="size-low">Size Low-High</option>
+        </select>
       </div>
 
+      {/* Empty State */}
       {installedApps.length === 0 ? (
         <div className="text-center py-20">
           <h2 className="text-2xl text-gray-500">No Installed Apps Found</h2>
 
           <Link to="/apps">
-            <button className="mt-6 bg-blue-600 text-white px-6 py-3 rounded-xl">
+            <button className="mt-6 bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition">
               Explore Apps
             </button>
           </Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-6">
+        <div className="space-y-6">
           {installedApps.map((app) => (
             <div
               key={app.id}
-              className="bg-white flex justify-between pr-10  items-center shadow-lg rounded-2xl overflow-hidden"
+              className="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col md:flex-row justify-between items-center"
             >
-              <div className="flex justify-center items-center">
+              {/* Left Section */}
+              <div className="flex flex-col sm:flex-row items-center w-full">
                 <img
                   src={app.image}
                   alt={app.title}
-                  className="w-96 h-32 object-cover"
+                  className="w-full sm:w-52 md:w-64 h-40 object-cover"
                 />
 
-                <div className="p-4 flex flex-col">
+                <div className="p-4 text-center sm:text-left">
                   <h2 className="text-xl font-bold">{app.title}</h2>
 
-                  <div className="flex gap-4 mt-3 space-y-1 text-sm">
+                  <div className="flex flex-wrap gap-4 mt-3 text-sm justify-center sm:justify-start">
                     <p>⬇ {app.downloads}</p>
                     <p>⭐ {app.ratingAvg}</p>
                     <p>📦 {app.size} MB</p>
@@ -123,12 +127,15 @@ const MyInstallation = () => {
                 </div>
               </div>
 
-              <button
-                onClick={() => handleUninstall(app.id)}
-                className="mt-4  bg-[#00D390] text-white py-2 px-4 rounded-lg"
-              >
-                Uninstall
-              </button>
+              {/* Button */}
+              <div className="p-4">
+                <button
+                  onClick={() => handleUninstall(app.id)}
+                  className="bg-[#00D390] text-white py-2 px-5 rounded-lg hover:bg-[#00b67d] transition"
+                >
+                  Uninstall
+                </button>
+              </div>
             </div>
           ))}
         </div>
