@@ -1,16 +1,37 @@
-# React + Vite
+# EaseCraft
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+EaseCraft is a modern web application where users can explore trending mobile applications, view detailed app information, install apps, and manage installed applications easily. The platform provides a clean user experience with responsive design, sorting features, search functionality, rating visualization, and installation management. Users can browse all available apps, view app details including ratings, downloads, and descriptions, then install or uninstall apps with real-time feedback using toast notifications.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The application is designed to simulate a professional app marketplace with premium UI, responsive layouts, and interactive components suitable for academic assignments and portfolio projects.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Browse all available apps
+- Trending apps section on homepage
+- View app details
+- Install and uninstall apps
+- Rating chart using Recharts
+- Search functionality
+- Sorting by downloads, ratings, and size
+- Responsive design for all devices
+- Toast notifications
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- React Router
+- Tailwind CSS
+- Recharts
+- React Toastify
+- LocalStorage
+- JSON Data
+
+## Deployment
+
+- Netlify / Vercel Ready
+
+## Author
+
+Developed for assignment submission.

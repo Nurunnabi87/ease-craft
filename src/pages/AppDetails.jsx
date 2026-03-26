@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import downloads from "../assets/icon-downloads.png";
 import ratings from "../assets/icon-ratings.png";
 import reviews from "../assets/icon-review.png";
+import RatingChart from "../components/RatingChart";
 
 const AppDetails = () => {
   const app = useLoaderData();
@@ -85,24 +86,12 @@ const AppDetails = () => {
       </div>
       <hr className="max-w-4xl mx-auto pt-10 text-gray-300 " />
 
-      {/* Ratings Breakdown */}
-      <div className="bg-white shadow-lg rounded-2xl p-6 mt-8">
-        <h2 className="text-2xl font-semibold mb-4">Ratings Breakdown</h2>
-
-        <div className="space-y-3">
-          {app.ratings.map((rating, index) => (
-            <div
-              key={index}
-              className="flex justify-between bg-gray-100 px-4 py-2 rounded-lg"
-            >
-              <span>{rating.name}</span>
-              <span>{rating.count}</span>
-            </div>
-          ))}
-        </div>
+      {/* Ratings */}
+      <div className="my-10">
+        <RatingChart ratings={app.ratings} />
       </div>
-
-      <p className="text-lg font-semibold mt-6">Description</p>
+      <hr className="max-w-5xl mx-auto mt-10 text-gray-300 " />
+      <p className="text-lg font-semibold mt-5">Description</p>
       <p className="mt-4 text-gray-700">{app.description}</p>
     </div>
   );
