@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
+import { toast } from "react-toastify";
 import downloads from "../assets/icon-downloads.png";
 import ratings from "../assets/icon-ratings.png";
 import reviews from "../assets/icon-review.png";
-
-import { useEffect, useState } from "react";
 
 const AppDetails = () => {
   const app = useLoaderData();
@@ -28,6 +28,7 @@ const AppDetails = () => {
       localStorage.setItem("installedApps", JSON.stringify(storedApps));
 
       setInstalled(true);
+      toast.success("App Installed Successfully 🎉");
     }
   };
   return (
@@ -78,7 +79,7 @@ const AppDetails = () => {
                 : "bg-blue-600 hover:bg-blue-700"
             }`}
           >
-            Install Now ({app.size} MB)
+            {installed ? "Installed" : `Install Now (${app.size} MB)`}
           </button>
         </div>
       </div>
